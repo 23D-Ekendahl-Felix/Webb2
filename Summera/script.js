@@ -4,6 +4,7 @@ var minus = document.querySelectorAll(".minus");
 var antalText = document.querySelectorAll(".antal");
 var summa = document.querySelectorAll(".summa");
 var total = document.querySelector(".total");
+
 //sätter antal till 0
 var antal = [0, 0, 0, 0];
 //skriver ut antal direkt 0
@@ -39,3 +40,15 @@ for (let i = 0; i < minus.length; i++) {
         }
     });
 }
+//Kod för totalen
+var allasummor = document.querySelectorAll(".summa");
+var totalSumma = 0;
+setInterval(function() {
+    totalSumma = 0;
+    for (var i = 0; i < allasummor.length; i++) {
+        var summaText = allasummor[i].textContent;
+        var summaNummer = parseInt(summaText);
+        totalSumma += summaNummer;
+    }
+    total.textContent = totalSumma + "kr";
+}, 100);
