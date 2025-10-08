@@ -9,7 +9,17 @@ var Spin = document.querySelector(".Spin");
 var card = document.querySelectorAll(".card");
 var Spinul = document.querySelector(".SpinListconteiner");
 
+var SpinLog = document.querySelector(".SpinLog");
+var SpinLogModal = document.querySelector(".modal");
+var closeSpinLog = document.querySelector(".SpinLogclose");
+var NoSpinText = document.querySelector(".Feltext");
+var clearLog = document.querySelector(".clearLog");
 
+var pengar = 1000;
+var Pengar = document.querySelector(".Pengar");
+Pengar.textContent = pengar + " $";
+
+//Submit form
 SubmitText.addEventListener("click", function () {
     if (Name.value == "" && Emailaddress.value == "" && Message.value == "") {
     }
@@ -23,11 +33,12 @@ SubmitText.addEventListener("click", function () {
     }
 });
 
+//Slot machine
 Spin.addEventListener("click", function () {
     for (let i = 0; i < Nummer.length; i++) {
         var bet = 10;
         if (pengar - bet < 0 || pengar <= 0) {
-            alert("You don't have enough money to spin!");
+
             return;
         }
         pengar -= bet;
@@ -60,24 +71,7 @@ Spin.addEventListener("click", function () {
 
 });
 
-var SpinLog = document.querySelector(".SpinLog");
-var SpinLogModal = document.querySelector(".modal");
-var closeSpinLog = document.querySelector(".SpinLogclose");
-var NoSpinText = document.querySelector(".Feltext");
-var clearLog = document.querySelector(".clearLog");
-
-
-clearLog.addEventListener("click", function () {
-    if (Spinul.children.length == 0) {
-        NoSpinText.textContent = "You have not spun yet!";
-    }
-    else {
-        Spinul.innerHTML = "";
-        NoSpinText.textContent = "Log cleared!";
-        SpinLogModal.style.display = "none";
-    }
-});
-
+//Spin log modal
 SpinLog.addEventListener("click", function () {
     SpinLogModal.style.display = "block";
     if (Spinul.children.length == 0) {
@@ -92,8 +86,31 @@ SpinLog.addEventListener("click", function () {
 closeSpinLog.addEventListener("click", function () {
     SpinLogModal.style.display = "none";
 });
+//Clear log
+clearLog.addEventListener("click", function () {
+    if (Spinul.children.length == 0) {
+        NoSpinText.textContent = "You have not spun yet!";
+    }
+    else {
+        Spinul.innerHTML = "";
+        NoSpinText.textContent = "Log cleared!";
+        SpinLogModal.style.display = "none";
+    }
+});
 
-var pengar = 1000;
-var Pengar = document.querySelector(".Pengar");
-Pengar.textContent = pengar + " $";
+
+var InfoButton = document.querySelector(".btn-info");
+var InfoModal = document.querySelector(".modalinfo");
+var closeInfo = document.querySelector(".Info-close");
+
+InfoButton.addEventListener("click", function () {
+    InfoModal.style.display = "block";
+});
+closeInfo.addEventListener("click", function () {
+    InfoModal.style.display = "none";
+});
+
+
+
+
 
