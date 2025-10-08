@@ -14,13 +14,14 @@
   <div class="container">
     <header class="text-center py-3 bg-light ">
       <h1>Casino</h1>
-      <ul class="nav justify-content-center">
+      <ul class="nav justify-content-center ">
         <li class="nav-item">
           <a class="nav-link active" aria-current="page" href="#">Home</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="#">Black Jack</a>
         </li>
+        <p class="Pengar"></p>
         <li class="nav-item">
           <a class="nav-link" href="#">Roulette</a>
         </li>
@@ -31,6 +32,8 @@
     </header>
 
     <Main class="text-center py-3 bg-light">
+      <h2>Slot Machine</h2>
+      <p class="Bettext">Only gamble if you're of legal age and know your limits. When the fun stops, stop.</p>
       <div class="cards">
         <div class="card text-center mb-3" style="width: 18rem;">
           <div class="card-body">
@@ -57,9 +60,33 @@
       </div>
       <button type="Spin" class=" Spin btn btn-primary mb-3">Spin</button>
       <H2>Last Spin</H2>
-      <ul class="SpinListconteiner ">
+      <button type="SpinLog" class=" SpinLog btn btn-secondary">SpinLog</button>
+      <p class="Feltext"></p>
+
+
+<div class="modal" tabindex="-1">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">SpinLog</h5>
+        <button type="button" class="SpinLogclose btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+              <ul class="SpinListconteiner ">
 
       </ul>
+      </div>
+      <div class="modal-footer">
+         <button type="button" class="clearLog btn btn-primary">Clear SpinLog</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
     </Main>
 
     <footer class=" py-3 bg-light">

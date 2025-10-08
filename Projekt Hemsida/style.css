@@ -8,11 +8,11 @@ header H1 {
     font-size: 4em;
     margin-bottom: 25px;
 }
-
-header nav.navbar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+.Pengar {
+    font-size: 1.5em;
+    margin-left: 15px;
+    color: green;
+    font-weight: bold;
 }
 
 Main .card {
