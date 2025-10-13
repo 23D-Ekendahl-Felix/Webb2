@@ -2,132 +2,167 @@
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Casino sida</title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
-    integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
-  <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Casino sida</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
-  <div class="container">
-    <header class="text-center py-3 bg-light">
-      <h1>Casino</h1>
-      <ul class="nav justify-content-center ">
-        <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="#">Home</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Black Jack</a>
-        </li>
-        <p class="Pengar"></p>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Roulette</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link disabled" aria-disabled="true">Poker</a>
-        </li>
-      </ul>
-    </header>
+    <div class="container ">
+        <header class="text-center py-3 bg-light">
+            <h1>Casino</h1>
+            <ul class="nav justify-content-center ">
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="SlotMachine.HTML">Slot Machine</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Black Jack</a>
+                </li>
 
-    <Main class="text-center py-3 bg-light">
-      <h2>Slot Machine</h2>
-      <p class="Bettext">Only gamble if you're of legal age and know your limits. When the fun stops, stop.</p>
-      <button type="button" class="btn-info btn btn-info">Info</button>
-      <div class="cards">
-        <div class="card text-center mb-3" style="width: 18rem;">
-          <div class="card-body">
-            <h5 class="card-title">Nummer 1</h5>
-            <p class="Nummer">--</p>
-          </div>
-        </div>
-        <div class="card text-center mb-3" style="width: 18rem;">
-          <div class="card-body">
-            <h5 class="card-title">Nummer 2</h5>
-            <p class="Nummer">--</p>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Roulette</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link disabled" aria-disabled="true">Poker</a>
+                </li>
+                <p class="Pengar"></p>
+            </ul>
+        </header>
 
-          </div>
-        </div>
-        <div class="card text-center mb-3" style="width: 18rem;">
-          <div class="card-body">
-            <h5 class="card-title">Nummer 3</h5>
-            <p class="Nummer">--</p>
-          </div>
-        </div>
-      </div>
-      <button type="Spin" class=" Spin btn btn-primary mb-3">Spin</button>
-      <H2>Last Spin</H2>
-      <button type="SpinLog" class=" SpinLog btn btn-secondary">SpinLog</button>
-      <p class="Feltext"></p>
+        <Main class="text-center py-3 bg-light">
+            <h2>Home</h2>
 
-      <div class="modal" tabindex="-1">
-        <div class="modal-dialog">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title">SpinLog</h5>
-              <button type="button" class="SpinLogclose btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            <div class="Info-skroll">
+                <div id="carouselExampleCaptions" class="carousel slide">
+                    <div class="carousel-indicators">
+                        <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0"
+                            class="active" aria-current="true" aria-label="Slide 1"></button>
+                        <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1"
+                            aria-label="Slide 2"></button>
+                        <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2"
+                            aria-label="Slide 3"></button>
+                    </div>
+                    <div class="carousel-inner">
+                        <div class="carousel-item active">
+                            <img src="https://images.unsplash.com/photo-1655159428752-c700435e9983?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MjB8fGNhc2lub3xlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&q=60&w=600"
+                                class="d-block w-100" alt="...">
+                            <div class="carousel-caption d-none d-md-block">
+                                <h5>Poker</h5>
+                                <p>The new poker nights are comming soon.</p>
+                            </div>
+                        </div>
+                        <div class="carousel-item">
+                            <img src="https://images.unsplash.com/photo-1618304925090-b68a8c744cbe?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=1170"
+                                class="d-block w-100" alt="...">
+                            <div class="carousel-caption d-none d-md-block">
+                                <h5>Second slide label</h5>
+                                <p>Some representative placeholder content for the second slide.</p>
+                            </div>
+                        </div>
+                        <div class="carousel-item">
+                            <img src="https://images.unsplash.com/photo-1676854254200-895a9e6b8c4c?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MzB8fGNhc2lub3xlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&q=60&w=600"
+                                class="d-block w-100" alt="...">
+                            <div class="carousel-caption d-none d-md-block">
+                                <h5>Third slide label</h5>
+                                <p>Some representative placeholder content for the third slide.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions"
+                        data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Previous</span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions"
+                        data-bs-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Next</span>
+                    </button>
+                </div>
             </div>
-            <div class="modal-body">
-              <ul class="SpinListconteiner ">
 
-              </ul>
+            <div class="cards">
+                <div class="card" style="width: 18rem;">
+                    <img src="..." class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">Card title</h5>
+                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of
+                            the card’s content.</p>
+                        <a href="#" class="btn btn-primary">Go somewhere</a>
+                    </div>
+                </div>
+                <div class="card" style="width: 18rem;">
+                    <img src="..." class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">Card title</h5>
+                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of
+                            the card’s content.</p>
+                        <a href="#" class="btn btn-primary">Go somewhere</a>
+                    </div>
+                </div>
+                <div class="card" style="width: 18rem;">
+                    <img src="..." class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">Card title</h5>
+                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of
+                            the card’s content.</p>
+                        <a href="#" class="btn btn-primary">Go somewhere</a>
+                    </div>
+                </div>
             </div>
-            <div class="modal-footer">
-              <button type="button" class="clearLog btn btn-primary">Clear SpinLog</button>
+        </Main>
+
+        <footer class=" py-3 bg-light">
+            <div class="container">
+                <div class="mb-3">
+                    <label for="exampleFormControlInput1" class="form-label">Email address</label>
+                    <input type="email" class="Emailaddress form-control" id="exampleFormControlInput1"
+                        placeholder="name@example.com">
+                    <label for="exampleFormControlInput1" class="form-label">Name</label>
+                    <input type="Text" class="Name form-control" id="exampleFormControlInput1" placeholder="John Doe">
+                </div>
+                <div class="mb-3">
+                    <label for="exampleFormControlTextarea1" class="form-label"></label>
+                    <textarea class="Message form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+
+                </div>
+                <button type="SubmitText" class="SubmitText btn btn-primary mb-3">Submit</button>
             </div>
-          </div>
-        </div>
-      </div>
-    </Main>
+            <H2>SubmitLista</H2>
+            <ul class="listconteiner">
 
-    <footer class=" py-3 bg-light">
-      <div class="container">
-        <div class="mb-3">
-          <label for="exampleFormControlInput1" class="form-label">Email address</label>
-          <input type="email" class="Emailaddress form-control" id="exampleFormControlInput1"
-            placeholder="name@example.com">
-          <label for="exampleFormControlInput1" class="form-label">Name</label>
-          <input type="Text" class="Name form-control" id="exampleFormControlInput1" placeholder="John Doe">
-        </div>
-        <div class="mb-3">
-          <label for="exampleFormControlTextarea1" class="form-label"></label>
-          <textarea class="Message form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
-
-        </div>
-        <button type="SubmitText" class="SubmitText btn btn-primary mb-3">Submit</button>
-      </div>
-      <H2>SubmitLista</H2>
-      <ul class="listconteiner">
-
-      </ul>
+            </ul>
 
 
-    </footer>
-  </div>
-
-          <div class="modalinfo modal" tabindex="-1">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title">Slot Machine Info</h5>
-          <button type="button" class="Info-close btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-          <li>Starting Bet is at 10$</li>
-          <li>If you win you get Five times your bet</li>
-          <li>If you lose you lose your bet</li>
-          <li>You can only bet in increments of 10$</li>
-          <li>You can only bet if you have more than 10$</li>
-        </div>
-      </div>
+        </footer>
     </div>
-  </div>
 
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
-    crossorigin="anonymous"></script>
-  <script src="script.js"></script>
+    <div class="modalinfo modal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Slot Machine Info</h5>
+                    <button type="button" class="Info-close btn-close" data-bs-dismiss="modal"
+                        aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <li>Starting Bet is at 10$</li>
+                    <li>If you win you get Five times your bet</li>
+                    <li>If you lose you lose your bet</li>
+                    <li>You can only bet in increments of 10$</li>
+                    <li>You can only bet if you have more than 10$</li>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+        crossorigin="anonymous"></script>
+    <script src="script.js"></script>
 </body>
 
 </html>
