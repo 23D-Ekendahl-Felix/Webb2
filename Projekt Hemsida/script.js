@@ -1,9 +1,3 @@
-var Name = document.querySelector(".Name");
-var Emailaddress = document.querySelector(".Emailaddress");
-var Message = document.querySelector(".Message");
-var SubmitText = document.querySelector(".SubmitText");
-var ul = document.querySelector(".listconteiner");
-
 var Nummer = document.querySelectorAll(".Nummer");
 var Spin = document.querySelector(".Spin");
 var card = document.querySelectorAll(".card");
@@ -19,24 +13,10 @@ var pengar = 1000;
 var Pengar = document.querySelector(".Pengar");
 Pengar.textContent = pengar + " $";
 
-//Submit form
-SubmitText.addEventListener("click", function () {
-    if (Name.value == "" && Emailaddress.value == "" && Message.value == "") {
-    }
-    else {
-        var li = document.createElement("li");
-        li.textContent = "Name: " + Name.value + "  ||    Email: " + Emailaddress.value + "  ||    Message: " + Message.value;
-        ul.appendChild(li);
-        Name.value = "";
-        Emailaddress.value = "";
-        Message.value = "";
-    }
-});
-
 //Slot machine
 Spin.addEventListener("click", function () {
+    var bet = 10;
     for (let i = 0; i < Nummer.length; i++) {
-        var bet = 10;
         if (pengar - bet < 0 || pengar <= 0) {
 
             return;
@@ -62,7 +42,7 @@ Spin.addEventListener("click", function () {
         }
     }
     if (Nummer[0].textContent == 5 && Nummer[1].textContent == 5 && Nummer[2].textContent == 5) {
-        pengar += bet * 10;
+        pengar += 1000;
         Pengar.textContent = pengar + " $";
     }
     var li = document.createElement("li");

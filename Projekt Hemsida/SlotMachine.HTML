@@ -12,19 +12,15 @@
 
 <body >
   <div class="container ">
-    <header class="text-center py-3 bg-light">
+    <header class="text-center py-3 ">
       <h1>Casino</h1>
       <ul class="nav justify-content-center ">
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="index.html">Home</a>
+          <a class="nav-link active element" aria-current="page" href="index.html">Home</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Black Jack</a>
-        </li>
-        
-        <li class="nav-item">
-          <a class="nav-link" href="#">Roulette</a>
-        </li>
+          <a class="nav-link disabled" href="#">Black Jack</a>
+        </li> 
         <li class="nav-item">
           <a class="nav-link disabled" aria-disabled="true">Poker</a>
         </li>
@@ -32,34 +28,34 @@
       </ul>
     </header>
 
-    <Main class="text-center py-3 bg-light">
+    <Main class="text-center py-3">
       <h2>Slot Machine</h2>
       <p class="Bettext">Only gamble if you're of legal age and know your limits. When the fun stops, stop.</p>
       <div class="cards">
-        <div class="card text-center mb-3" style="width: 18rem;">
+        <div class="card text-center mb-3 element" style="width: 18rem;">
           <div class="card-body">
             <h5 class="card-title">Nummer 1</h5>
             <p class="Nummer">--</p>
           </div>
         </div>
-        <div class="card text-center mb-3" style="width: 18rem;">
+        <div class="card text-center mb-3 element" style="width: 18rem;">
           <div class="card-body">
             <h5 class="card-title">Nummer 2</h5>
             <p class="Nummer">--</p>
             
           </div>
         </div>
-        <div class="card text-center mb-3" style="width: 18rem;">
+        <div class="card text-center mb-3 element" style="width: 18rem;">
           <div class="card-body">
             <h5 class="card-title">Nummer 3</h5>
             <p class="Nummer">--</p>
           </div>
         </div>
       </div>
-      <button type="Spin" class=" Spin btn btn-primary mb-3">Spin</button>
+      <button type="Spin" class=" Spin btn btn-primary mb-3 element">Spin</button>
       <H2>Last Spin</H2>
-      <button type="button" class="btn-info btn btn-secondary">Info</button>
-      <button type="SpinLog" class=" SpinLog btn btn-secondary">SpinLog</button>
+      <button type="button" class="btn-info btn btn-secondary element">Info</button>
+      <button type="SpinLog" class=" SpinLog btn btn-secondary element">SpinLog</button>
       <p class="Feltext"></p>
 
       <div class="modal" tabindex="-1">
@@ -67,7 +63,7 @@
           <div class="modal-content">
             <div class="modal-header">
               <h5 class="modal-title">SpinLog</h5>
-              <button type="button" class="SpinLogclose btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              <button type="button" class="SpinLogclose btn-close " data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
               <ul class="SpinListconteiner ">
@@ -75,14 +71,16 @@
               </ul>
             </div>
             <div class="modal-footer">
-              <button type="button" class="clearLog btn btn-primary">Clear SpinLog</button>
+              <button type="button" class="clearLog btn btn-primary element">Clear SpinLog</button>
             </div>
           </div>
         </div>
       </div>
     </Main>
 
-    <footer class=" py-3 bg-light">
+    <footer class=" py-3 ">
+      <div class="container">
+        <div class="mb-3">
     </footer>
   </div>
 
@@ -91,7 +89,7 @@
       <div class="modal-content">
         <div class="modal-header">
           <h5 class="modal-title">Slot Machine Info</h5>
-          <button type="button" class="Info-close btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          <button type="button" class="Info-close btn-close element" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
           <li>Starting Bet is at 10$</li>

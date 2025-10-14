@@ -1,4 +1,5 @@
 body {
+    background-color: #F9F9F9;
     align-items: center;
     font-family: Arial, sans-serif;
     margin: 0;
@@ -12,9 +13,13 @@ body {
 }
 
 header {
+    background-color: #EDEDED;
     padding: 20px;
     margin-bottom: 10px;
     border-radius: 8px;
+}
+header .navbar {
+ background-color: #D6D6D6;
 }
 
 header H1 {
@@ -29,7 +34,8 @@ header H1 {
     font-weight: bold;
 }
 
-main {
+Main {
+    background-color: #EDEDED;
     border-radius: 8px;
 }
 
@@ -51,6 +57,7 @@ Main .cards {
 }
 
 footer {
+    background-color: #B0B0B0;
     text-align: center;
     padding: 10px;
 
@@ -75,4 +82,11 @@ footer .container {
     border-radius: 10px;
     height: 400px;
     margin-right: 20px;
+}
+.element {
+  transition: transform 0.3s ease;
+}
+
+.element:hover {
+  transform: scale(1.1); 
 }
