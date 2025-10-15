@@ -1,5 +1,5 @@
 body {
-    background-color: #F9F9F9;
+    background-color: #1A1A1A;
     align-items: center;
     font-family: Arial, sans-serif;
     margin: 0;
@@ -13,18 +13,20 @@ body {
 }
 
 header {
-    background-color: #EDEDED;
+    background-color: #2D2D2D;
     padding: 20px;
     margin-bottom: 10px;
     border-radius: 8px;
 }
-header .navbar {
- background-color: #D6D6D6;
-}
+
 
 header H1 {
+    font-weight: bold;
     font-size: 4em;
     margin-bottom: 25px;
+}
+header a {
+    font-size: large;
 }
 
 .Pengar {
@@ -35,11 +37,12 @@ header H1 {
 }
 
 Main {
-    background-color: #EDEDED;
+    background-color: #2D2D2D;
     border-radius: 8px;
 }
 
 Main .card {
+    background-color: #1F1F1F;
     align-items: center;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
     transition: 0.3s;
@@ -89,4 +92,18 @@ footer .container {
 
 .element:hover {
   transform: scale(1.1); 
+}
+
+.primary {
+   color: #FFD700 ;
+}
+.secondary {
+   color: #F5F5F5 ;
+}
+.button
+{
+    color: black;
+}
+.disabledbutton {
+    color: black;
 }
