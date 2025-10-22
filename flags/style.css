@@ -1,0 +1,38 @@
+@import url("https://fonts.googleapis.com/css?family=Source+Sans+Pro|Damion|Roboto+Slab&display=swap");
+
+body {
+  background: url("https://images.unsplash.com/photo-1514454529242-9e4677563e7b?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80") fixed;
+  background-size: 1900px;
+}
+
+.container {
+  width: 700px;
+  padding: 2em;
+  margin: 1em auto;
+  min-height: 89vh;
+  background: #ffffff6e;
+  border-radius: 5px;
+  font-family: 'Roboto Slab', serif;
+  border: 1px solid #a0a0a0;
+  box-shadow: 1px 1px 4px #686868;
+  text-align: center;
+}
+
+h1 {
+  color: #ffffff;
+  font-size: 3em;
+  margin: 0;
+  text-shadow: 1px 1px 1px #5c5c5c;
+}
+
+.grid-6 { 
+  padding: 1.5rem 0;
+}
+
+/* Gör flaggbilder snygga i Bootstrap‑kolumner */
+.grid-6 img {
+  background: #fff;
+  border: 1px solid #ccc;
+  padding: 0.25rem;
+  border-radius: 6px;
+}
