@@ -1,0 +1,7 @@
+body {
+    font-family: system-ui;
+    margin: 2rem;
+}
+.kort {
+    max-width: 900px;
+}
