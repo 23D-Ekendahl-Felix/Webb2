@@ -15,18 +15,38 @@
 </head>
 
 <body>
-  <article class="review">
-    <div class="img-container">
-      <img src="person-img" alt="person" class="person" />
-    </div>
-    <h4 id="author">sara</h4>
-    <p id="job"></p>
-    <p id="info">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quasi, voluptas temporibus hic exercitationem
-      pariatur laborum, architecto impedit tempore explicabo voluptatum sit unde. Quas recusandae, aut pariatur dolorum
-      accusantium officia placeat.</p>
-  </article>
+  <main>
+    <h1>Reviews</h1>
+    <div class="underline"></div>
+
+    <section>
+      <article class="review">
+        <div class="img-container">
+          <img src="./person-1.jpeg" alt="person" id="person-img" />
+        </div>
+        <h4 id="author">sara</h4>
+        <p id="job"></p>
+        <p id="info">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quasi, voluptas temporibus hic
+          exercitationem
+          pariatur laborum, architecto impedit tempore explicabo voluptatum sit unde. Quas recusandae, aut pariatur
+          dolorum
+          accusantium officia placeat.</p>
+        <div class="button-container">
+        <button class="prev-btn">
+          <i class="fas fa-chevron-left"></i>
+        </button>
+        <button class="next-btn">
+          <i class="fas fa-chevron-right"></i>
+        </button>
+        <button class="random-btn">surprise me</button>
+        <div class="button-container">
+        </div>
+        </div>
+      </article>
+    </section>
+  </main>
   <!-- javascript -->
-  <script src="app.js"></script>
+  <script defer src="app.js"></script>
 </body>
 
 </html>
