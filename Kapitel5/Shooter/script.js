@@ -200,7 +200,7 @@ function explosiondra() {
       enemy2y = -100 * Math.random()
       enemy2speed = 5 * Math.random()
     }
-  }
+  }*
 
   function stars() {
     ctx.fillStyle = "white"
