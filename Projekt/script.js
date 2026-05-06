@@ -1,122 +1,217 @@
 const canvas = document.querySelector("canvas");
 const ctx = canvas.getContext("2d");
 
+canvas.width = 800;
+canvas.height = 600;
+
 const playerBil = new Image();
 playerBil.src = "./car (1).png";
 
-const enemyBil1 = new Image();
-enemyBil1.src = "./vehicle.png";
+const enemyBil = new Image();
+enemyBil.src = "./vehicle.png";
+
+const crashSound = new Audio("./explosion-meme_dTCfAHs.mp3");
 
 let game = {
-    numberOfTrees: 6,
-    laneLeft: canvas.width * 0.35,
-    laneRight: canvas.width * 0.45,
-    distanceBetweenEnemies: 500
+    laneLeft: canvas.width * 0.4,
+    laneMid: canvas.width * 0.5,
+    laneRight: canvas.width * 0.6,
+    speed: 5,
+    maxSpeed: 10,
+    score: 0,
+    gameOver: false
 };
 
 let player = {
-    x: canvas.width * 0.4,
-    y: canvas.height * 0.6,
-    width: 128,
-    height: 128,
-    directionH: "",
-    directionV: ""
+    x: game.laneMid,
+    y: canvas.height * 0.7,
+    width: 100,
+    height: 100,
+    dir: "",
+    hitboxPadding: 25
 };
-let enemy = {
-    x: canvas.width * 0.3,
-    y: -game.distanceBetweenEnemies,
-    width: 28,
-    height: 128,
-    speed: 3
-};
-let enemies = [];
 
+let enemies = [];
+let lanes = [game.laneLeft, game.laneMid, game.laneRight];
+
+function createEnemies() {
+    enemies = [];
+
+    for (let i = 0; i < 5; i++) {
+        enemies.push({
+            x: lanes[i % 3],
+            y: -i * 200,
+            width: 100,
+            height: 100,
+            hitboxPadding: 25
+        });
+    }
+}
+
+function getHitbox(obj) {
+    const p = obj.hitboxPadding || 0;
+
+    return {
+        x: obj.x + p,
+        y: obj.y + p,
+        width: obj.width - p * 2,
+        height: obj.height - p * 2
+    };
+}
+
+function isColliding(a, b) {
+    return (
+        a.x < b.x + b.width &&
+        a.x + a.width > b.x &&
+        a.y < b.y + b.height &&
+        a.y + a.height > b.y
+    );
+}
+
+function drawRoad() {
+    ctx.fillStyle = "green";
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+    ctx.fillStyle = "gray";
+    ctx.fillRect(game.laneLeft, 0, 250, canvas.height);
+
+    ctx.fillStyle = "yellow";
+    ctx.fillRect(game.laneMid + 48, 0, 5, canvas.height);
+    ctx.fillStyle = "white";
+    ctx.fillRect(game.laneLeft + 10, 0, 5, canvas.height);
+    ctx.fillRect(game.laneRight + 76, 0, 5, canvas.height);
+}
 
 function drawPlayer() {
     ctx.drawImage(playerBil, player.x, player.y, player.width, player.height);
 }
 
 function drawEnemies() {
-    for (let i = 0; i < enemies.length; i++) {
-    ctx.drawImage(enemyBil1, enemies[i].x, enemies[i].y, enemies[i].width, enemies[i].height);
+    for (let e of enemies) {
+        ctx.drawImage(enemyBil, e.x, e.y, e.width, e.height);
     }
 }
 
-window.addEventListener("keydown", function (e) {
-    if (e.code == "KeyD") {
-        player.directionH = "R";
-    }
-    if (e.code == "KeyA") {
-        player.directionH = "L";
-    }
-});
+function drawUI() {
+    ctx.save();
+    ctx.fillStyle = "rgba(0, 0, 0, 0.35)";
+    ctx.fillRect(10, 10, 200, 50);
 
-window.addEventListener("keyup", function (e) {
-    if (e.code == "KeyD") {
-        player.directionH = "";
-    }
-    if (e.code == "KeyA") {
-        player.directionH = "";
-    }
-});
+    ctx.strokeStyle = "rgba(255, 255, 255, 0.15)";
+    ctx.strokeRect(10, 10, 200, 50);
 
-function updateplayer() {
-    if (player.directionH == "R") {
-        player.x += 5;
-    }
-    if (player.directionH == "L") {
-        player.x -= 5;
-    }
+    ctx.fillStyle = "#ffffff";
+    ctx.font = "bold 20px Arial";
+    ctx.textBaseline = "middle";
+    ctx.shadowColor = "rgba(0,0,0,0.6)";
+    ctx.shadowBlur = 6;
 
-    if (player.x > game.laneRight) {
-        player.x = game.laneRight;
-    }
-    if (player.x < game.laneLeft) {
-        player.x = game.laneLeft;
+    ctx.fillText("Score: " + game.score, 25, 35);
+    ctx.restore();
+
+    if (game.gameOver) {
+        ctx.save();
+
+        ctx.fillStyle = "rgba(0, 0, 0, 0.65)";
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+        ctx.fillStyle = "#ff3b3b";
+        ctx.font = "bold 60px Arial";
+        ctx.textAlign = "center";
+        ctx.textBaseline = "middle";
+        ctx.shadowColor = "rgba(0,0,0,0.8)";
+        ctx.shadowBlur = 15;
+
+        ctx.fillText("GAME OVER", canvas.width / 2, canvas.height / 2 - 40);
+
+        ctx.fillStyle = "#ffffff";
+        ctx.font = "20px Arial";
+        ctx.shadowBlur = 8;
+
+        ctx.fillText("Tryck SPACE för att spela igen", canvas.width / 2, canvas.height / 2 + 30);
+
+        ctx.restore();
     }
 }
 
-function enemyFysik() {
+window.addEventListener("keydown", (e) => {
+    if (e.code === "KeyA") player.dir = "left";
+    if (e.code === "KeyD") player.dir = "right";
 
-    for (let i = 0; i < enemies.length; i++) {
+    if (e.code === "Space" && game.gameOver) {
+        restartGame();
+    }
+});
 
-        enemies[i].y += enemies[i].speed;
+window.addEventListener("keyup", () => {
+    player.dir = "";
+});
 
-        if (enemies[i].y > canvas.height) {
+function updatePlayer() {
+    if (player.dir === "left") player.x -= 6;
+    if (player.dir === "right") player.x += 6;
 
-            enemies[i].y = -game.distanceBetweenEnemies;
+    if (player.x < game.laneLeft) player.x = game.laneLeft;
+    if (player.x > game.laneRight) player.x = game.laneRight;
+}
 
+function updateEnemies() {
+    for (let e of enemies) {
+        e.y += game.speed;
+
+        if (e.y > canvas.height) {
+            e.y = -200;
+            e.x = lanes[Math.floor(Math.random() * lanes.length)];
+
+            game.score++;
+
+            if (game.speed <= game.maxSpeed) {
+                if (game.score % 5 === 0) {
+                    game.speed += 1;
+                }
+            }
         }
-
     }
-
 }
 
-for (let i = 0; i < 6; i++) {
+function checkCollision() {
+    const playerBox = getHitbox(player);
 
-    let laneIndex = i % 2;
+    for (let e of enemies) {
+        const enemyBox = getHitbox(e);
 
-    enemies.push({
-        x: lanes[laneIndex],
-        y: -i * game.distanceBetweenEnemies,
-        width: 128,
-        height: 128,
-        speed: 8
-    });
+        if (isColliding(playerBox, enemyBox)) {
+            game.gameOver = true;
+            crashSound.play();
+            return;
+        }
+    }
+}
 
+function restartGame() {
+    game.score = 0;
+    game.speed = 5;
+    game.gameOver = false;
+    player.x = game.laneMid;
+    createEnemies();
 }
 
 function gameLoop() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
 
+    drawRoad();
     drawPlayer();
     drawEnemies();
-   
+    drawUI();
 
-    updateplayer();
-    enemyFysik();
+    if (!game.gameOver) {
+        updatePlayer();
+        updateEnemies();
+        checkCollision();
+    }
 
     requestAnimationFrame(gameLoop);
 
 }
+createEnemies();
 gameLoop();
