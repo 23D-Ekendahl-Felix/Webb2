@@ -18,6 +18,12 @@ let game = {
     laneRight: canvas.width * 0.6,
     speed: 5,
     maxSpeed: 15,
+    enemySpeeds: {
+        left: 4,
+        middle: 6,
+        right: 8
+    },
+    enemySpacing: 250,
     score: 0,
     money: 0,
     shieldUnlockscore: 20,
@@ -334,14 +340,28 @@ function updateEnemies() {
 
 function createEnemies() {
     enemies = [];
-
     for (let i = 0; i < 5; i++) {
+        let lane;
+        let speed;
+        if (i % 3 === 0) {
+            lane = game.laneLeft;
+            speed = game.enemySpeeds.left;
+        }
+        else if (i % 3 === 1) {
+            lane = game.laneMid;
+            speed = game.enemySpeeds.middle;
+        }
+        else {
+            lane = game.laneRight;
+            speed = game.enemySpeeds.right;
+        }
         enemies.push({
-            x: lanes[i % 3],
-            y: -i * 200,
+            x: lane,
+            y: -i * game.enemySpacing,
             width: 100,
             height: 100,
-            hitboxPadding: 25
+            hitboxPadding: 25,
+            speed: speed
         });
     }
 }
