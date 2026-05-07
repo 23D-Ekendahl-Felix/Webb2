@@ -4,14 +4,16 @@ const ctx = canvas.getContext("2d");
 canvas.width = 800;
 canvas.height = 600;
 
+// Laddar bilder och ljud
 const playerBil = new Image();
-playerBil.src = "./car (1).png";
+playerBil.src = "./player.png";
 
 const enemyBil = new Image();
-enemyBil.src = "./vehicle.png";
+enemyBil.src = "./carenypolice.png";
 
 const crashSound = new Audio("./explosion-meme_dTCfAHs.mp3");
 
+// Spelvariabler
 let game = {
     laneLeft: canvas.width * 0.4,
     laneMid: canvas.width * 0.5,
@@ -19,7 +21,7 @@ let game = {
     speed: 5,
     maxSpeed: 15,
     enemySpeeds: {
-        left: 4,
+        left: 20,
         middle: 6,
         right: 8
     },
@@ -45,6 +47,7 @@ let player = {
 let enemies = [];
 let lanes = [game.laneLeft, game.laneMid, game.laneRight];
 
+// Ritfunktioner
 function drawRoad() {
     ctx.fillStyle = "green";
     ctx.fillRect(0, 0, canvas.width, canvas.height);
@@ -58,17 +61,14 @@ function drawRoad() {
     ctx.fillRect(game.laneLeft + 10, 0, 5, canvas.height);
     ctx.fillRect(game.laneRight + 76, 0, 5, canvas.height);
 }
-
 function drawPlayer() {
     ctx.drawImage(playerBil, player.x, player.y, player.width, player.height);
 }
-
 function drawEnemies() {
     for (let e of enemies) {
         ctx.drawImage(enemyBil, e.x, e.y, e.width, e.height);
     }
 }
-
 function drawUI() {
 
     if (!game.gameOver && !game.paused) {
@@ -134,22 +134,20 @@ function drawUI() {
 
         let shieldGrad = ctx.createLinearGradient(px, py, px, py + pw);
 
-        if (game.score >= game.shieldUnlockscore) {
+        if (game.shieldUnlockscore <= game.score) {
             shieldGrad.addColorStop(0, "rgba(0, 180, 255, 0.45)");
             shieldGrad.addColorStop(1, "rgba(0, 80, 140, 0.45)");
-            game.shieldUnlocked = true;
         } else {
             shieldGrad.addColorStop(0, "rgba(120,120,120,0.35)");
             shieldGrad.addColorStop(1, "rgba(60,60,60,0.35)");
-            game.shieldUnlocked = false;
         }
 
         ctx.fillStyle = shieldGrad;
         ctx.fill();
 
-        ctx.strokeStyle = game.shieldUnlocked
-        "rgba(0, 200, 255, 0.7)"
-        "rgba(120,120,120,0.5)";
+        ctx.strokeStyle = game.shieldUnlockscore <= game.score
+            ? "rgba(0, 200, 255, 0.7)"
+            : "rgba(120,120,120,0.5)";
 
         ctx.lineWidth = 2;
         ctx.stroke();
@@ -158,7 +156,7 @@ function drawUI() {
         ctx.textBaseline = "middle";
         ctx.font = "bold 30px Arial";
 
-        if (game.shieldUnlocked) {
+        if (game.shieldUnlockscore <= game.score) {
             ctx.fillStyle = "#00e5ff";
             ctx.shadowColor = "#00e5ff";
             ctx.shadowBlur = 15;
@@ -256,7 +254,6 @@ function drawUI() {
         ctx.restore();
     }
 }
-
 function drawHitbox(obj, color = "red") {
     const hb = getHitbox(obj);
 
@@ -270,7 +267,18 @@ function drawHitbox(obj, color = "red") {
 
     ctx.restore();
 }
+function drawShield() {
+    ctx.shadowColor = "rgba(0, 255, 255, 0.9)";
+    ctx.shadowBlur = 50;
+}
+function shieldEffect() {
+    if (game.shieldUnlocked == true) {
+        drawShield();
 
+    }
+
+}
+// Lyssnar på knapptryckningar
 window.addEventListener("keydown", (e) => {
 
     if (e.code === "Escape") {
@@ -306,11 +314,11 @@ window.addEventListener("keydown", (e) => {
         restartGame();
     }
 });
-
 window.addEventListener("keyup", () => {
     player.dir = "";
 });
 
+// Speluppdateringsfunktioner
 function updatePlayer() {
     if (player.dir === "left") player.x -= 6;
     if (player.dir === "right") player.x += 6;
@@ -318,7 +326,6 @@ function updatePlayer() {
     if (player.x < game.laneLeft) player.x = game.laneLeft;
     if (player.x > game.laneRight) player.x = game.laneRight;
 }
-
 function updateEnemies() {
     for (let e of enemies) {
         e.y += game.speed;
@@ -337,7 +344,6 @@ function updateEnemies() {
         }
     }
 }
-
 function createEnemies() {
     enemies = [];
     for (let i = 0; i < 5; i++) {
@@ -365,7 +371,6 @@ function createEnemies() {
         });
     }
 }
-
 function getHitbox(obj) {
     return {
         x: obj.x + obj.width / 2,
@@ -374,29 +379,36 @@ function getHitbox(obj) {
         ry: obj.height * 0.45
     };
 }
-
 function isColliding(a, b) {
     const dx = (a.x - b.x) / (a.rx + b.rx);
     const dy = (a.y - b.y) / (a.ry + b.ry);
 
     return (dx * dx + dy * dy) < 1;
 }
-
 function checkCollision() {
     const playerBox = getHitbox(player);
+    if (game.shieldUnlocked == true) {
+        for (let e of enemies) {
+            const enemyBox = getHitbox(e);
+            if (isColliding(playerBox, enemyBox)) {
+                console.log("Shield blocked a hit!");
+            }
+        }
 
-    for (let e of enemies) {
-        const enemyBox = getHitbox(e);
-
-        if (isColliding(playerBox, enemyBox)) {
-            game.gameOver = true;
-            game.money += game.score * 10;
-            crashSound.play();
-            return;
+    }
+    else {
+        for (let e of enemies) {
+            const enemyBox = getHitbox(e);
+            if (isColliding(playerBox, enemyBox)) {
+                crashSound.currentTime = 0;
+                crashSound.play();
+                game.gameOver = true;
+            }
         }
     }
 }
 
+// Spelloop
 function restartGame() {
     game.score = 0;
     game.speed = 5;
@@ -405,14 +417,11 @@ function restartGame() {
     player.x = game.laneMid;
     createEnemies();
 }
-
 function gameLoop() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
-
     drawRoad();
     drawPlayer();
     drawEnemies();
-
     if (game.debugHitbox) {
         drawHitbox(player, "lime");
         for (let e of enemies) {
@@ -424,10 +433,10 @@ function gameLoop() {
 
     if (!game.gameOver && !game.paused) {
         updatePlayer();
+        shieldEffect();
         updateEnemies();
         checkCollision();
     }
-
     requestAnimationFrame(gameLoop);
 }
 
