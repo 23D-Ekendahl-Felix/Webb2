@@ -25,10 +25,11 @@ let game = {
         middle: 6,
         right: 8
     },
-    enemySpacing: 250,
+    enemySpacing: 400,
+    enemySpawnY: -200,
     score: 0,
     money: 0,
-    shieldUnlockscore: 20,
+    shieldUnlockscore: 0,
     gameOver: false,
     paused: false,
     shieldUnlocked: false,
@@ -267,17 +268,17 @@ function drawHitbox(obj, color = "red") {
 
     ctx.restore();
 }
-function drawShield() {
-    ctx.shadowColor = "rgba(0, 255, 255, 0.9)";
-    ctx.shadowBlur = 50;
-}
 function shieldEffect() {
     if (game.shieldUnlocked == true) {
-        drawShield();
-
+        ctx.shadowColor = "rgba(0, 255, 255, 0.9)";
+        ctx.shadowBlur = 50;
     }
-
+    if (game.shieldUnlocked == false) {
+        ctx.shadowColor = "";
+        ctx.shadowBlur = 0;
+    }
 }
+
 // Lyssnar på knapptryckningar
 window.addEventListener("keydown", (e) => {
 
@@ -288,6 +289,9 @@ window.addEventListener("keydown", (e) => {
 
     if (e.code === "KeyH") {
         game.debugHitbox = !game.debugHitbox;
+    }
+    if (e.code === "KeyS" && game.shieldUnlockscore <= game.score) {
+        game.shieldUnlocked = true
     }
 
     if (game.paused) {
@@ -331,7 +335,7 @@ function updateEnemies() {
         e.y += game.speed;
 
         if (e.y > canvas.height) {
-            e.y = -200;
+            e.y = game.enemySpawnY;
             e.x = lanes[Math.floor(Math.random() * lanes.length)];
 
             game.score++;
@@ -387,14 +391,18 @@ function isColliding(a, b) {
 }
 function checkCollision() {
     const playerBox = getHitbox(player);
+    
     if (game.shieldUnlocked == true) {
         for (let e of enemies) {
             const enemyBox = getHitbox(e);
             if (isColliding(playerBox, enemyBox)) {
                 console.log("Shield blocked a hit!");
+                e.y = -200;
+                e.x = lanes[Math.floor(Math.random() * lanes.length)];
+                game.shieldUnlocked = false;
             }
         }
-
+        
     }
     else {
         for (let e of enemies) {
@@ -408,6 +416,7 @@ function checkCollision() {
     }
 }
 
+
 // Spelloop
 function restartGame() {
     game.score = 0;
@@ -415,6 +424,7 @@ function restartGame() {
     game.gameOver = false;
     game.paused = false;
     player.x = game.laneMid;
+    game.shieldUnlocked = false;
     createEnemies();
 }
 function gameLoop() {
